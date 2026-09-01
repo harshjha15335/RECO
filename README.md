@@ -17,7 +17,9 @@ python seed.py            # seeds 20 demo cases
 uvicorn main:app --reload --port 8000
 ```
 
-**Frontend** (React + Vite):
+**Frontend** (React + TypeScript + Vite, built on the FinFlex/Precision-Ledger
+design system — shadcn/ui primitives, Tailwind v4, chartreuse-on-charcoal
+theme):
 
 ```bash
 cd frontend
@@ -25,7 +27,9 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173.
+Open http://localhost:5173. The app source lives in `frontend/client/src`
+(Vite's root is `frontend/client`); `frontend/client/src/app-shell.css` holds
+the design system, `pages/Dashboard.tsx` is the single control-tower screen.
 
 ## Optional: real Claude + Razorpay
 
