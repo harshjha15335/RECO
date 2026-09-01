@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "reco-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "frontend", "run", "dev", "--", "--port", "5173"],
+      "port": 5173
+    },
+    {
+      "name": "finflex",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Users/ranja/OneDrive/Pictures/Desktop/finflex", "run", "dev", "--", "--port", "5174"],
+      "port": 5174
+    }
+  ]
+}
