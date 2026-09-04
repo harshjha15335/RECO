@@ -9,19 +9,23 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
  */
 
 const NAV_ITEMS = [
-  { label: "Home", path: "/", icon: Home },
-  { label: "Analytics", path: "/analytics", icon: BarChart3 },
-  { label: "Transfers", path: "/transfers", icon: Landmark },
-  { label: "Payments", path: "/payments", icon: CreditCard },
-  { label: "Cards", path: "/cards", icon: CreditCard },
+  { label: "Dashboard", path: "/", icon: Home },
+  { label: "Recovery Cases", path: "/cases", icon: Landmark },
+  { label: "Recoveries", path: "/recoveries", icon: CreditCard },
+  { label: "Customers", path: "/customers", icon: UserRound },
+  { label: "System Health", path: "/system", icon: BarChart3 },
+  { label: "Audit Trail", path: "/audit", icon: Search },
+  { label: "Rules", path: "/rules", icon: Settings2 },
 ];
 
 const COMMANDS = [
-  { label: "View analytics", detail: "Spending and cash flow", path: "/analytics", icon: BarChart3 },
-  { label: "Start a transfer", detail: "Move money between accounts", path: "/transfers", icon: Landmark },
-  { label: "Review payments", detail: "Search your complete ledger", path: "/payments", icon: Search },
-  { label: "Manage cards", detail: "Control payment methods", path: "/cards", icon: CreditCard },
-  { label: "Open settings", detail: "Preferences and alerts", path: "/settings", icon: Settings2 },
+  { label: "Dashboard", detail: "Control Tower overview", path: "/", icon: Home },
+  { label: "Recovery Cases", detail: "Active overdue accounts", path: "/cases", icon: Landmark },
+  { label: "Recoveries", detail: "Completed recovery actions", path: "/recoveries", icon: CreditCard },
+  { label: "Customers", detail: "Customer payment reliability", path: "/customers", icon: UserRound },
+  { label: "System Health", detail: "Incident and degradation status", path: "/system", icon: BarChart3 },
+  { label: "Audit Trail", detail: "Recovery event log", path: "/audit", icon: Search },
+  { label: "Rules", detail: "Deterministic guardrails", path: "/rules", icon: Settings2 },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -39,10 +43,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <main className="finance-page">
       <div className="finflex-shell">
-        <header className="command-rail" aria-label="FinFlex workspace navigation">
-          <Link href="/" className="brand-lockup" aria-label="Go to FinFlex home">
-            <div className="brand-mark" aria-hidden="true"><img src="/manus-storage/finflex-mark_b0c16f7d.png" alt="" /></div>
-            <div className="brand-name">Fin<span>Flex</span></div>
+        <header className="command-rail" aria-label="RECO workspace navigation">
+          <Link href="/" className="brand-lockup" aria-label="Go to RECO home">
+            <div className="brand-name">RECO</div>
           </Link>
           <nav className="nav-cluster" aria-label="Primary navigation">
             {NAV_ITEMS.map(({ label, path, icon: Icon }) => (
@@ -53,8 +56,8 @@ export function AppShell({ children }: { children: ReactNode }) {
           </nav>
           <div className="utility-actions">
             <button className="icon-button" type="button" aria-label="Open command menu" onClick={() => setCommandOpen(true)}><Menu size={16} /></button>
-            <Link href="/notifications" className={`icon-button ${location === "/notifications" ? "is-current" : ""}`} aria-label="View notifications"><Bell size={16} /></Link>
-            <Link href="/profile" className={`profile-disc ${location === "/profile" ? "is-current" : ""}`} aria-label="Open Mira's profile">MJ</Link>
+            <Link href="/system" className={`icon-button ${location === "/system" ? "is-current" : ""}`} aria-label="System Health"><Bell size={16} /></Link>
+            <Link href="/" className={`profile-disc ${location === "/" ? "is-current" : ""}`} aria-label="Profile">RE</Link>
           </div>
         </header>
         {children}
@@ -62,11 +65,11 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <Dialog open={commandOpen} onOpenChange={setCommandOpen}>
         <DialogContent className="command-dialog" showCloseButton={false}>
-          <div className="command-dialog-head"><div><p className="drawer-eyebrow"><Command size={12} /> Command menu</p><DialogTitle className="command-dialog-title">Find your next action</DialogTitle><DialogDescription className="drawer-description">Choose a FinFlex workspace or search its tools.</DialogDescription></div><button className="drawer-close" type="button" onClick={() => setCommandOpen(false)} aria-label="Close command menu"><X size={17} /></button></div>
+          <div className="command-dialog-head"><div><p className="drawer-eyebrow"><Command size={12} /> Command menu</p><DialogTitle className="command-dialog-title">Find your next action</DialogTitle><DialogDescription className="drawer-description">Choose a RECO workspace or search its tools.</DialogDescription></div><button className="drawer-close" type="button" onClick={() => setCommandOpen(false)} aria-label="Close command menu"><X size={17} /></button></div>
           <label className="command-search"><Search size={16} /><input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search screens and actions" /></label>
           <div className="command-results">
             {matchedCommands.map(({ label, detail, path, icon: Icon }) => <button key={path} type="button" onClick={() => runCommand(path)}><span className="command-result-icon"><Icon size={16} /></span><span><strong>{label}</strong><small>{detail}</small></span><span className="command-key">↵</span></button>)}
-            {!matchedCommands.length && <p className="command-empty">No FinFlex actions match that search.</p>}
+            {!matchedCommands.length && <p className="command-empty">No RECO actions match that search.</p>}
           </div>
         </DialogContent>
       </Dialog>

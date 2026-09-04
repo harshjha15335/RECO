@@ -4,32 +4,27 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
-import Analytics from "./pages/Analytics";
-import Transfers from "./pages/Transfers";
-import Payments from "./pages/Payments";
-import Cards from "./pages/Cards";
-import Notifications from "./pages/Notifications";
-import Profile from "./pages/Profile";
-import Settings from "./pages/Settings";
+import Dashboard from "./pages/Dashboard";
+import RecoveryCases from "./pages/RecoveryCases";
+import Recoveries from "./pages/Recoveries";
+import Customers from "./pages/Customers";
+import SystemHealth from "./pages/SystemHealth";
+import AuditTrail from "./pages/AuditTrail";
+import Rules from "./pages/Rules";
+import CaseDetail from "./pages/CaseDetail";
 import "./app-shell.css";
-
-/**
- * Precision Ledger design system: the dashboard is an ink-black financial
- * workspace with high-contrast chartreuse signals and deliberate hierarchy.
- */
 
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/analytics"} component={Analytics} />
-      <Route path={"/transfers"} component={Transfers} />
-      <Route path={"/payments"} component={Payments} />
-      <Route path={"/cards"} component={Cards} />
-      <Route path={"/notifications"} component={Notifications} />
-      <Route path={"/profile"} component={Profile} />
-      <Route path={"/settings"} component={Settings} />
+      <Route path={"/"} component={Dashboard} />
+      <Route path={"/cases"} component={RecoveryCases} />
+      <Route path={"/cases/:id"} component={CaseDetail} />
+      <Route path={"/recoveries"} component={Recoveries} />
+      <Route path={"/customers"} component={Customers} />
+      <Route path={"/system"} component={SystemHealth} />
+      <Route path={"/audit"} component={AuditTrail} />
+      <Route path={"/rules"} component={Rules} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

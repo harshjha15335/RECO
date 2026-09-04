@@ -2,6 +2,11 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+import { seedDatabase } from "./db/seed.js";
+import { router as apiRouter } from "./routes.js";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,6 +14,9 @@ const __dirname = path.dirname(__filename);
 async function startServer() {
   const app = express();
   const server = createServer(app);
+
+  app.use(express.json());
+  app.use("/api", apiRouter);
 
   // Serve static files from dist/public in production
   const staticPath =
@@ -24,6 +32,8 @@ async function startServer() {
   });
 
   const port = process.env.PORT || 3000;
+
+  seedDatabase();
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
